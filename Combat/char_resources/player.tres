@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=2 format=3 uid="uid://bc23wq3li6t6r"]
+
+[ext_resource type="Script" path="res://Combat/char_resource.gd" id="1_15dmq"]
+
+[resource]
+script = ExtResource("1_15dmq")
+name = ""
+hp = 0
+morale = 0
+toxicity = 0
+melee_skill = 0
+ranged_skill = 0
+defense = 0
+reflex = 0
