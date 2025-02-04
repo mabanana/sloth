@@ -1,6 +1,9 @@
 extends Object
 class_name CombatCharacter
 
+static var attack_dice = 20
+static var base_damage_dice = 4
+
 # identifiers
 var id: int
 var name: String
@@ -19,6 +22,9 @@ var reflex: int
 var resource: CharacterResource
 var statuses: Array
 var equips: Array
+
+# state
+var alive: bool
 
 var max_hp: int:
 	get:
@@ -42,17 +48,35 @@ var base_reflex: int:
 	get:
 		return resource.reflex
 
-func _init(resource: CharacterResource):
+func _init(name, resource: CharacterResource):
 	self.resource = resource
-	type = resource.name
-	melee_skill = resource.melee_skill
-	ranged_skill = resource.ranged_skill
-	defense = resource.defense
-	reflex = resource.reflex
+	self.type = resource.name
+	self.name = name
+	self.melee_skill = resource.melee_skill
+	self.ranged_skill = resource.ranged_skill
+	self.defense = resource.defense
+	self.reflex = resource.reflex
 	
-	hp = resource.hp
-	morale = resource.morale
-	toxicity = resource.toxicity
+	self.hp = resource.hp
+	self.morale = resource.morale
+	self.toxicity = resource.toxicity
 
-	statuses = []
-	equips = []
+	self.statuses = []
+	self.equips = []
+	
+	self.alive = true
+
+func attack_roll():
+	var roll = randi_range(1, attack_dice) + melee_skill
+	return roll
+
+func defense_roll():
+	var roll = randi_range(1, attack_dice) + defense
+	return roll
+
+func damage_roll():
+	var roll = randi_range(1, base_damage_dice)
+	return roll
+
+func take_damage(amount):
+	hp -= amount
