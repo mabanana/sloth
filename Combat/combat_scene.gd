@@ -10,9 +10,8 @@ var turn = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#main = get_parent()
+	main = get_parent()
 	init_test()
-	%Attack.pressed.connect(attack_button)
 	add_child(timer)
 	timer.wait_time = 0.08
 	timer.start()
@@ -31,8 +30,15 @@ func add_character(character):
 	id_counter += 1
 
 func _input(event):
-	#var result = main.input_handler.handle_input(event)
-	pass
+	var result: Dictionary = main.input_handler.handle_input(event)
+	if result and result.context == InputHandler.Context.key_pressed or result.context == InputHandler.Context.mouse_pressed:
+		match result["action"]:
+			InputHandler.PlayerActions.INTERACT:
+				if turn:
+					handle_attack(1, 2)
+				else:
+					handle_attack(2, 1)
+				turn = !turn
 
 func handle_attack(dealer_id, target_id):
 	var dealer: CombatCharacter = characters[dealer_id]
@@ -44,24 +50,23 @@ func handle_attack(dealer_id, target_id):
 	
 	game_message("%s attacks %s" % [dealer.name, target.name])
 	var attack_roll = dealer.attack_roll()
-	var defense_roll = target.defense_roll()
-	game_message("Attack Roll: %s, Defense Roll: %s" % [attack_roll, defense_roll])
 	var damage_roll = dealer.damage_roll()
-	if attack_roll > defense_roll:
-		target.take_damage(dealer.damage_roll())
+	
+	if not target.alive:
+		target.take_damage(damage_roll)
 		game_message("%s dealt %s to %s" % [dealer.name, damage_roll, target.name])
 	else:
-		game_message("%s's attack missed" % [dealer.name])
-	if target.hp <= 0:
-		game_message("%s has died" % [target.name])
+		var defense_roll = target.defense_roll()
+		game_message("Attack Roll: %s, Defense Roll: %s" % [attack_roll, defense_roll])
+		if attack_roll > defense_roll:
+			target.take_damage(damage_roll)
+			game_message("%s dealt %s to %s" % [dealer.name, damage_roll, target.name])
+		else:
+			game_message("%s's attack missed" % [dealer.name])
+		if target.hp <= 0:
+			game_message("%s has died" % [target.name])
+			target.alive = false
 	game_message("%s: %s, %s: %s" % [dealer.name, dealer.hp, target.name, target.hp])
-
-func attack_button():
-	if turn:
-		handle_attack(1, 2)
-	else:
-		handle_attack(2, 1)
-	turn = !turn
 
 func game_message(text):
 	print(text)

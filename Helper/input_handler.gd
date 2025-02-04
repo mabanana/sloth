@@ -3,7 +3,7 @@ class_name InputHandler
 var input_map
 
 static var DEFAULT_INPUT_MAP := {
-	MouseButton.MOUSE_BUTTON_LEFT : PlayerActions.FIRE,
+	MouseButton.MOUSE_BUTTON_LEFT : PlayerActions.INTERACT,
 	MouseButton.MOUSE_BUTTON_RIGHT : PlayerActions.ADS,
 	MouseButton.MOUSE_BUTTON_WHEEL_UP : PlayerActions.NEXT_WEAPON,
 	MouseButton.MOUSE_BUTTON_WHEEL_DOWN : PlayerActions.PREV_WEAPON,
@@ -11,7 +11,7 @@ static var DEFAULT_INPUT_MAP := {
 	Key.KEY_A : PlayerActions.MOVE_LEFT,
 	Key.KEY_S : PlayerActions.MOVE_BACKWARD,
 	Key.KEY_D : PlayerActions.MOVE_RIGHT,
-	Key.KEY_SPACE : PlayerActions.JUMP,
+	Key.KEY_SPACE : PlayerActions.INTERACT,
 	Key.KEY_SHIFT : PlayerActions.SPRINT,
 	Key.KEY_CTRL : PlayerActions.CROUCH,
 	Key.KEY_E : PlayerActions.INTERACT,
@@ -28,6 +28,7 @@ static var DEFAULT_INPUT_MAP := {
 	Key.KEY_V : PlayerActions.NEXT_WEAPON,
 	Key.KEY_X : PlayerActions.PREV_WEAPON,
 	Key.KEY_P : PlayerActions.TOGGLE_GUN_PREVIEW,
+	Key.KEY_ENTER: PlayerActions.INTERACT,
 }
 
 # Enum for potential player actions
@@ -59,9 +60,11 @@ enum PlayerActions {
 }
 
 enum Context {
-	event_input_pressed,
-	event_input_released,
-	event_mouse_moved,
+	key_pressed,
+	key_released,
+	mouse_pressed,
+	mouse_released,
+	mouse_moved,
 	mouse_capture_toggled,
 }
  
@@ -70,12 +73,12 @@ func _init():
 	
 func handle_input(event: InputEvent) -> Dictionary:
 	var result = {}
-	if event is InputEventMouseButton and event.button_index in input_map and Input.mouse_mode == Input.MouseMode.MOUSE_MODE_CAPTURED:
+	if event is InputEventMouseButton and event.button_index in input_map:
 		var context
 		if event.is_pressed() and !event.is_echo():
-			context = Context.event_input_pressed
+			context = Context.mouse_pressed
 		elif event.is_released():
-			context = Context.event_input_released
+			context = Context.mouse_released
 		else:
 			print("ERROR: event mouse button that is neither pressed nor released detected")
 			return {}
@@ -87,12 +90,12 @@ func handle_input(event: InputEvent) -> Dictionary:
 	elif event is InputEventKey and event.keycode in input_map:
 		var context
 		if event.is_pressed() and !event.is_echo():
-			context = Context.event_input_pressed
+			context = Context.key_pressed
 		elif event.is_echo():
 			# print("echo press event")
 			return {}
 		elif event.is_released():
-			context = Context.event_input_released
+			context = Context.key_released
 		else:
 			print("ERROR: event key press that is neither pressed nor released detected")
 			return {}
@@ -103,7 +106,7 @@ func handle_input(event: InputEvent) -> Dictionary:
 			}
 	elif event is InputEventMouseMotion:
 		return  {
-			"context": Context.event_mouse_moved,
+			"context": Context.mouse_moved,
 			"relative": event.relative
 			}
 	else:
