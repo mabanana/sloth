@@ -1,7 +1,10 @@
 extends Object
 class_name CombatCharacter
 
+# identifiers
+var id: int
 var name: String
+var type: String
 
 # stats
 var hp: int
@@ -41,7 +44,7 @@ var base_reflex: int:
 
 func _init(resource: CharacterResource):
 	self.resource = resource
-	name = resource.name
+	type = resource.name
 	melee_skill = resource.melee_skill
 	ranged_skill = resource.ranged_skill
 	defense = resource.defense

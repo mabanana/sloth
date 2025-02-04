@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_u3n3l")
-name = ""
+name = "Human"
 hp = 15
 morale = 5
 toxicity = 5
