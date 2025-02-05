@@ -8,6 +8,7 @@ static var base_damage_dice = 4
 var id: int
 var name: String
 var type: String
+var enemy: bool
 
 # stats
 var hp: int
@@ -52,6 +53,8 @@ func _init(name, resource: CharacterResource):
 	self.resource = resource
 	self.type = resource.name
 	self.name = name
+	self.enemy = false
+	
 	self.melee_skill = resource.melee_skill
 	self.ranged_skill = resource.ranged_skill
 	self.defense = resource.defense
