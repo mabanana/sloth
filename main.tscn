@@ -4,3 +4,50 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5bseh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start_Combat" type="Button" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -15.5
+offset_right = 55.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start Combat"
+
+[node name="WinLoss" type="Label" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -85.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/Control/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Auto"
