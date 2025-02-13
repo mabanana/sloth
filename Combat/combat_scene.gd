@@ -42,8 +42,8 @@ func _ready():
 	)
 
 func init_test():
-	add_character(CombatCharacter.new("Player", load("res://Combat/char_resources/player.tres")))
-	add_character(CombatCharacter.new("Bandit", load("res://Combat/char_resources/generic_human.tres")))
+	add_character(CombatCharacter.new("Player", load("res://Combat/CharacterResources/player.tres")))
+	add_character(CombatCharacter.new("Bandit", load("res://Combat/CharacterResources/generic_human.tres")))
 	character_sprites[2].position = Vector2(300, -100)
 	character_sprites[1].position = Vector2(-300, -100)
 	characters[2].enemy = true
