@@ -1,10 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://cf5aordffei3g"]
+[gd_scene load_steps=3 format=3 uid="uid://cf5aordffei3g"]
 
+[ext_resource type="Script" path="res://Fishing/fish.gd" id="1_2qm53"]
 [ext_resource type="Texture2D" uid="uid://bior5jjjcgljf" path="res://Fishing/Assets/global.png" id="1_sm5id"]
 
-[node name="Fish" type="Node2D"]
+[node name="Fish" type="Node2D" node_paths=PackedStringArray("sprite", "name_label")]
+script = ExtResource("1_2qm53")
+sprite = NodePath("Sprite2D")
+name_label = NodePath("NameTag")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
 texture = ExtResource("1_sm5id")
 hframes = 4
 vframes = 4
+
+[node name="NameTag" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -11.5
+offset_right = 41.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Fish Name
+"

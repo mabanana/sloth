@@ -7,14 +7,23 @@ var main_menu: Control
 var wins = 0
 var losses = 0
 
+enum Scene {
+	COMBAT,
+	FISHING,
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	main_menu = %Control
-	%Start_Combat.pressed.connect(start_combat)
-	%Auto_Combat.pressed.connect(func():
+	%StartCombat.pressed.connect(start_combat)
+	%AutoCombat.pressed.connect(func():
 		%AutoCheck.button_pressed = true
 		start_combat()
 	)
+	%StartFishing.pressed.connect(func():
+		start_scene(Scene.FISHING)
+	)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -34,3 +43,16 @@ func conclude_combat(outcome):
 	elif outcome == CombatScene.Outcome.unresolved:
 		print("unresolved combat")
 	%WinLoss.text = str(wins) + "/" + str(losses)
+
+func start_scene(scene: Scene):
+	main_menu.hide()
+	var resource
+	match scene:
+		Scene.COMBAT:
+			resource = load("res://Combat/scene.tscn")
+		Scene.FISHING:
+			resource = load("res://Fishing/scene.tscn")
+	current_scene = resource.instantiate()
+	add_child(current_scene)
+	if %AutoCheck.button_pressed:
+		current_scene.auto_toggle.button_pressed = true

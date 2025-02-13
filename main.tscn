@@ -24,22 +24,27 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -55.5
-offset_top = -33.0
+offset_top = -39.0
 offset_right = 55.5
-offset_bottom = 33.0
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Start_Combat" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="StartCombat" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Start Combat"
 
-[node name="Auto_Combat" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="AutoCombat" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Auto Combat
 "
+
+[node name="StartFishing" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start Fishing"
 
 [node name="WinLoss" type="Label" parent="CanvasLayer/Control"]
 unique_name_in_owner = true
