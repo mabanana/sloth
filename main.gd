@@ -11,7 +11,10 @@ var losses = 0
 func _ready():
 	main_menu = %Control
 	%Start_Combat.pressed.connect(start_combat)
-
+	%Auto_Combat.pressed.connect(func():
+		%AutoCheck.button_pressed = true
+		start_combat()
+	)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -20,7 +23,7 @@ func start_combat():
 	main_menu.hide()
 	current_scene = load("res://Combat/scene.tscn").instantiate()
 	add_child(current_scene)
-	if %CheckButton.button_pressed:
+	if %AutoCheck.button_pressed:
 		current_scene.auto_toggle.button_pressed = true
 
 func conclude_combat(outcome):
