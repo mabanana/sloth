@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf5aordffei3g"]
+
+[ext_resource type="Texture2D" uid="uid://bior5jjjcgljf" path="res://Fishing/Assets/global.png" id="1_sm5id"]
+
+[node name="Fish" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sm5id")
+hframes = 4
+vframes = 4
