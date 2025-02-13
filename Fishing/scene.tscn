@@ -1,11 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://cv72ng5p61op7"]
+[gd_scene load_steps=9 format=3 uid="uid://cv72ng5p61op7"]
 
 [ext_resource type="Script" path="res://Fishing/fishing_scene.gd" id="1_pkqmd"]
+[ext_resource type="Script" path="res://Helper/StateMachine.gd" id="2_7voic"]
+[ext_resource type="Script" path="res://Fishing/ready_state.gd" id="3_1yysw"]
+[ext_resource type="Script" path="res://Fishing/aiming_state.gd" id="4_lay6m"]
+[ext_resource type="Script" path="res://Fishing/casting_state.gd" id="5_r15fv"]
+[ext_resource type="Script" path="res://Fishing/bobbing_state.gd" id="6_cordm"]
+[ext_resource type="Script" path="res://Fishing/reeling_state.gd" id="7_i7eoh"]
+[ext_resource type="Script" path="res://Fishing/caught_state.gd" id="8_3gamx"]
 
-[node name="Fishing" type="Node2D" node_paths=PackedStringArray("state_label")]
+[node name="Fishing" type="Node2D" node_paths=PackedStringArray("state_machine", "state_label")]
 script = ExtResource("1_pkqmd")
+state_machine = NodePath("StateMachine")
 state_label = NodePath("Label")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "scene")]
+script = ExtResource("2_7voic")
+current_state = NodePath("Ready")
+scene = NodePath("..")
+
+[node name="Ready" type="Node" parent="StateMachine"]
+script = ExtResource("3_1yysw")
+
+[node name="Aiming" type="Node" parent="StateMachine"]
+script = ExtResource("4_lay6m")
+
+[node name="Casting" type="Node" parent="StateMachine"]
+script = ExtResource("5_r15fv")
+
+[node name="Bobbing" type="Node" parent="StateMachine"]
+script = ExtResource("6_cordm")
+
+[node name="Reeling" type="Node" parent="StateMachine"]
+script = ExtResource("7_i7eoh")
+
+[node name="Caught" type="Node" parent="StateMachine"]
+script = ExtResource("8_3gamx")
