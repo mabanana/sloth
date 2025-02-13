@@ -18,9 +18,9 @@ var auto_progress
 const scroll_speed = 0.1
 
 enum Outcome {
-	win,
-	loss,
-	unresolved,
+	WIN,
+	LOSS,
+	UNRESOLVED
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -28,7 +28,7 @@ func _ready():
 	player_turn = true
 	combat_ended = false
 	auto_progress = false
-	outcome = Outcome.unresolved
+	outcome = Outcome.UNRESOLVED
 	main = get_parent()
 	init_test()
 	start_combat_log_timer(scroll_speed)
@@ -128,10 +128,10 @@ func check_win():
 			else:
 				player_alive = true
 	if player_alive and !enemy_alive:
-		outcome = Outcome.win
+		outcome = Outcome.WIN
 		combat_ended = true
 	elif !player_alive and enemy_alive:
-		outcome = Outcome.loss
+		outcome = Outcome.LOSS
 		combat_ended = true
 
 func progress_turn():
@@ -162,11 +162,11 @@ func progress_turn():
 	check_win()
 	if combat_ended:
 		match Outcome:
-			Outcome.win:
+			Outcome.WIN:
 				combat_log("You Won!")
-			Outcome.loss:
+			Outcome.LOSS:
 				combat_log("You Lost.")
-			Outcome.unresolved:
+			Outcome.UNRESOLVED:
 				combat_log("This isn't over.")
 		combat_log("Click to continue...")
 		auto_toggle.button_pressed = false

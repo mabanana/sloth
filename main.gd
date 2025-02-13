@@ -36,11 +36,11 @@ func start_combat():
 		current_scene.auto_toggle.button_pressed = true
 
 func conclude_combat(outcome):
-	if outcome == CombatScene.Outcome.win:
+	if outcome == CombatScene.Outcome.WIN:
 		wins += 1
-	elif outcome == CombatScene.Outcome.loss:
+	elif outcome == CombatScene.Outcome.LOSS:
 		losses += 1
-	elif outcome == CombatScene.Outcome.unresolved:
+	elif outcome == CombatScene.Outcome.UNRESOLVED:
 		print("unresolved combat")
 	%WinLoss.text = str(wins) + "/" + str(losses)
 
