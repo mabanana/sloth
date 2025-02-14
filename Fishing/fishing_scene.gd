@@ -4,6 +4,7 @@ class_name FishingScene
 var main: Main
 @export var state_machine: StateMachine
 
+@onready var fish_card_scene: PackedScene = preload("res://Fishing/fish_card.tscn")
 var types = ["Atlantic Bass",
 		"Clownfish",
 		"Dab",
@@ -33,7 +34,8 @@ var max_cast_power: float = 1.5
 var min_cast_power: float = 0.6
 var fishes = {}
 var fish_counter = 1
-var catch: Fish = null
+var catch: Fish
+var fish_card: FishCard
 
 @export var state_label: Label
 @export var bobber: Sprite2D
@@ -101,4 +103,19 @@ func catch_fish(fish: Fish):
 	fish.caught = true
 	fish.is_biting = false
 	catch = fish
+	fish_card = display_card(fish)
+	
 	print("caught %s" % [fish.type])
+
+func display_card(fish: Fish):
+	var new_card:FishCard = fish_card_scene.instantiate()
+	new_card.length = round_2dp(randf_range(10,60))
+	new_card.weight = round_2dp(randf_range(3,50))
+	new_card.type = fish.type
+	new_card.frame_x = fish.sprite_frame % 4 * 16
+	new_card.frame_y = roundi(fish.sprite_frame / 4) * 16
+	main.canvas_layer.add_child(new_card)
+	return new_card
+
+func round_2dp(x):
+		return int(x * 100) / 100.0

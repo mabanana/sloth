@@ -7,6 +7,8 @@ var main_menu: Control
 var wins = 0
 var losses = 0
 
+@export var canvas_layer: CanvasLayer
+
 enum Scene {
 	COMBAT,
 	FISHING,

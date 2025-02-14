@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_5bseh"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("canvas_layer")]
 script = ExtResource("1_5bseh")
+canvas_layer = NodePath("CanvasLayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
