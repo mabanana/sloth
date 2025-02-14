@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cv72ng5p61op7"]
+[gd_scene load_steps=9 format=3 uid="uid://cv72ng5p61op7"]
 
 [ext_resource type="Script" path="res://Fishing/fishing_scene.gd" id="1_pkqmd"]
 [ext_resource type="Script" path="res://Helper/StateMachine.gd" id="2_7voic"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Fishing/casting_state.gd" id="5_r15fv"]
 [ext_resource type="Script" path="res://Fishing/bobbing_state.gd" id="6_cordm"]
 [ext_resource type="Script" path="res://Fishing/reeling_state.gd" id="7_i7eoh"]
-[ext_resource type="Script" path="res://Fishing/caught_state.gd" id="8_3gamx"]
 [ext_resource type="Texture2D" uid="uid://bior5jjjcgljf" path="res://Fishing/Assets/global.png" id="9_pkkmn"]
 
 [node name="Fishing" type="Node2D" node_paths=PackedStringArray("state_machine", "state_label", "bobber")]
@@ -39,9 +38,6 @@ script = ExtResource("6_cordm")
 
 [node name="Reeling" type="Node" parent="StateMachine"]
 script = ExtResource("7_i7eoh")
-
-[node name="Caught" type="Node" parent="StateMachine"]
-script = ExtResource("8_3gamx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(5, 5)

@@ -1,7 +1,9 @@
 extends Node2D
 class_name Fish
 
-var resource: FishResource
+var sprite_frame: int
+var type: String
+
 @export var sprite: Sprite2D
 @export var name_label: Label
 
@@ -11,9 +13,11 @@ var caught = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if not resource:
+	if sprite_frame == null or not type:
+		print(sprite_frame, type)
 		queue_free()
-	name_label.text = resource.name
+	sprite.frame = sprite_frame
+	name_label.text = type
 	name_label.position.y -= sprite.get_rect().size.y * sprite.scale.y
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

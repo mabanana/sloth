@@ -12,8 +12,8 @@ func state_input(result):
 		match result["action"]:
 			InputHandler.PlayerActions.INTERACT:
 				var fishes = []
-				for fish in scene.fishes.values():
-					if fish.is_biting:
+				for fish:Node2D in scene.fishes.values():
+					if fish and fish.is_biting:
 						fishes.append(fish)
 				if fishes:
 					scene.catch_fish(fishes[randi_range(0, len(fishes) - 1)])

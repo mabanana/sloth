@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="FishResource" load_steps=2 format=3 uid="uid://dcrjhrvon8dw6"]
-
-[ext_resource type="Script" path="res://Fishing/fish_resource.gd" id="1_76ilh"]
-
-[resource]
-script = ExtResource("1_76ilh")
-sprite_frame = 1

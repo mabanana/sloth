@@ -26,7 +26,7 @@ func move_bobber():
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(bobber, "position", scene.cast_origin, 0.5)
 	await tween.finished
-	next_state = state_machine.states["Caught"]
+	next_state = state_machine.states["Ready"]
 
 func move_fish(fish):
 	var tween:Tween = get_tree().create_tween()

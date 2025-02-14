@@ -4,6 +4,24 @@ class_name FishingScene
 var main: Main
 @export var state_machine: StateMachine
 
+var types = ["Atlantic Bass",
+		"Clownfish",
+		"Dab",
+		"Sea Spider",
+		"Blue Gill",
+		"Guppy",
+		"Freshwater Snail",
+		"Axolotl",
+		"High Fin",
+		"Golden Tench",
+		"Moss Ball",
+		"Plastic Bag",
+		"Junonia",
+		"Sand Dollar",
+		"Starfish",
+		"Bobber"
+		]
+
 var cast_origin: Vector2
 var default_cast: Vector2
 var cast_pos: Vector2
@@ -22,7 +40,10 @@ var catch: Fish = null
 
 func _ready():
 	main = get_parent()
-	add_fish(load("res://Fishing/FishResources/AtlBass.tres"))
+	
+	for i in range(10):
+		add_fish(randi_range(0, len(types) - 2))
+	
 	var view_size: Vector2 = get_viewport_rect().size
 	
 	cast_origin = Vector2(int(view_size.x / 2), int(view_size.y * 0.9))
@@ -49,9 +70,10 @@ func get_random_pos(initial = null):
 		pos = initial + displace
 	return pos
 
-func add_fish(resource):
+func add_fish(sprite_frame):
 	var new_fish:Fish = load("res://Fishing/fish.tscn").instantiate()
-	new_fish.resource = resource
+	new_fish.sprite_frame = sprite_frame
+	new_fish.type = types[sprite_frame]
 	new_fish.position = get_random_pos()
 	add_child(new_fish)
 	fishes[fish_counter] = new_fish
@@ -77,5 +99,6 @@ func _on_fish_move_end(fish:Fish):
 
 func catch_fish(fish: Fish):
 	fish.caught = true
+	fish.is_biting = false
 	catch = fish
-	print("caught %s" % [fish.resource.name])
+	print("caught %s" % [fish.type])
