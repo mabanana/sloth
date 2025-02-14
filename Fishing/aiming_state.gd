@@ -18,6 +18,8 @@ func state_input(result):
 		else:
 			next_state = state_machine.states["Ready"]
 			print("cast power too low.")
+	if result.context == InputHandler.Context.mouse_moved:
+		scene.cast_pos = get_viewport().get_mouse_position()
 
 func on_enter():
 	scene = state_machine.scene
