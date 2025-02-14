@@ -9,9 +9,10 @@
 [ext_resource type="Script" path="res://Fishing/reeling_state.gd" id="7_i7eoh"]
 [ext_resource type="Texture2D" uid="uid://bior5jjjcgljf" path="res://Fishing/Assets/global.png" id="9_pkkmn"]
 
-[node name="Fishing" type="Node2D" node_paths=PackedStringArray("state_machine", "state_label", "bobber")]
+[node name="Fishing" type="Node2D" node_paths=PackedStringArray("state_machine", "canvas_layer", "state_label", "bobber")]
 script = ExtResource("1_pkqmd")
 state_machine = NodePath("StateMachine")
+canvas_layer = NodePath("CanvasLayer")
 state_label = NodePath("Label")
 bobber = NodePath("Sprite2D")
 
@@ -45,3 +46,5 @@ texture = ExtResource("9_pkkmn")
 hframes = 4
 vframes = 4
 frame = 15
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

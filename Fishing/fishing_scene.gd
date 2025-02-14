@@ -37,6 +37,7 @@ var fish_counter = 1
 var catch: Fish
 var fish_card: FishCard
 
+@export var canvas_layer: CanvasLayer
 @export var state_label: Label
 @export var bobber: Sprite2D
 
@@ -114,7 +115,7 @@ func display_card(fish: Fish):
 	new_card.type = fish.type
 	new_card.frame_x = fish.sprite_frame % 4 * 16
 	new_card.frame_y = roundi(fish.sprite_frame / 4) * 16
-	main.canvas_layer.add_child(new_card)
+	canvas_layer.add_child(new_card)
 	return new_card
 
 func round_2dp(x):
