@@ -56,5 +56,5 @@ func start_scene(scene: Scene):
 			resource = load("res://Fishing/scene.tscn")
 	current_scene = resource.instantiate()
 	add_child(current_scene)
-	if %AutoCheck.button_pressed:
+	if %AutoCheck.button_pressed and scene == Scene.COMBAT:
 		current_scene.auto_toggle.button_pressed = true
