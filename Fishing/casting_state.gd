@@ -12,7 +12,7 @@ func state_input(result):
 
 func on_enter():
 	scene = state_machine.scene
-	bobber = scene.cast_bobber
+	bobber = scene.bobber
 	bobber.position = scene.cast_origin
 	
 	var max_cast_dist = scene.cast_origin.length() / 2 * (scene.cast_power/scene.max_cast_power)

@@ -12,16 +12,26 @@ func state_input(result):
 
 func on_enter():
 	scene = state_machine.scene
-	bobber = scene.cast_bobber
-	move_to(scene.cast_origin)
+	bobber = scene.bobber
+	move_bobber()
+	if scene.catch:
+		move_fish(scene.catch)
 
 func on_exit():
 	pass
 	
-func move_to(pos):
+func move_bobber():
 	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_EXPO)
-	tween.tween_property(bobber, "position", pos, 0.5)
+	tween.tween_property(bobber, "position", scene.cast_origin, 0.5)
 	await tween.finished
-	next_state = state_machine.states["Ready"]
+	next_state = state_machine.states["Caught"]
+
+func move_fish(fish):
+	var tween:Tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(fish, "position", scene.cast_origin, 0.5)
+	await tween.finished
+	fish.hide()

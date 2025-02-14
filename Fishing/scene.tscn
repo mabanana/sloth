@@ -10,11 +10,11 @@
 [ext_resource type="Script" path="res://Fishing/caught_state.gd" id="8_3gamx"]
 [ext_resource type="Texture2D" uid="uid://bior5jjjcgljf" path="res://Fishing/Assets/global.png" id="9_pkkmn"]
 
-[node name="Fishing" type="Node2D" node_paths=PackedStringArray("state_machine", "state_label", "cast_bobber")]
+[node name="Fishing" type="Node2D" node_paths=PackedStringArray("state_machine", "state_label", "bobber")]
 script = ExtResource("1_pkqmd")
 state_machine = NodePath("StateMachine")
 state_label = NodePath("Label")
-cast_bobber = NodePath("Sprite2D")
+bobber = NodePath("Sprite2D")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0

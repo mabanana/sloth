@@ -6,6 +6,8 @@ var resource: FishResource
 @export var name_label: Label
 
 signal move_done
+var is_biting = false
+var caught = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +21,8 @@ func _process(delta):
 	pass
 
 func move_to(pos):
+	if caught:
+		return
 	var tween:Tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_EXPO)

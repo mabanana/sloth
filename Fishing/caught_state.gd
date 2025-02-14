@@ -2,7 +2,7 @@ extends State
 class_name FishingCaughtState
 
 func state_process(delta):
-	pass
+	next_state = state_machine.states["Ready"]
 
 func state_input(result):
 	pass
