@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c16r2biys7ghs"]
 
-[ext_resource type="Script" path="res://FishCard.gd" id="1_p2u3u"]
+[ext_resource type="Script" path="res://Fishing/FishCard.gd" id="1_p2u3u"]
 [ext_resource type="Texture2D" uid="uid://bior5jjjcgljf" path="res://Fishing/Assets/global.png" id="2_8mxp0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bct1q"]

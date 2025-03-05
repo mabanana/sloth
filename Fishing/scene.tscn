@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cv72ng5p61op7"]
 
 [ext_resource type="Script" path="res://Fishing/fishing_scene.gd" id="1_pkqmd"]
-[ext_resource type="Script" path="res://Helper/StateMachine.gd" id="2_7voic"]
+[ext_resource type="Script" path="res://Helper/state_machine.gd" id="2_7voic"]
 [ext_resource type="Script" path="res://Fishing/ready_state.gd" id="3_1yysw"]
 [ext_resource type="Script" path="res://Fishing/aiming_state.gd" id="4_lay6m"]
 [ext_resource type="Script" path="res://Fishing/casting_state.gd" id="5_r15fv"]
