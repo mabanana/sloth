@@ -2,7 +2,7 @@ extends Node2D
 class_name FishingScene
 
 var main: Main
-@export var state_machine: StateMachine
+
 
 @onready var fish_card_scene: PackedScene = preload("res://Fishing/fish_card.tscn")
 var types = ["Atlantic Bass",
@@ -37,12 +37,19 @@ var fish_counter = 1
 var catch: Fish
 var fish_card: FishCard
 
+@export var state_machine: StateMachine
 @export var canvas_layer: CanvasLayer
 @export var state_label: Label
 @export var bobber: Sprite2D
+@export var exit_button: Button
+
 
 func _ready():
 	main = get_parent()
+	exit_button.pressed.connect(func():
+		main.main_menu.show()
+		queue_free()
+		)
 	
 	for i in range(10):
 		add_fish(randi_range(0, len(types) - 2))

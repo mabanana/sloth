@@ -9,16 +9,13 @@
 [ext_resource type="Script" path="res://Fishing/reeling_state.gd" id="7_i7eoh"]
 [ext_resource type="Texture2D" uid="uid://bior5jjjcgljf" path="res://Fishing/Assets/global.png" id="9_pkkmn"]
 
-[node name="Fishing" type="Node2D" node_paths=PackedStringArray("state_machine", "canvas_layer", "state_label", "bobber")]
+[node name="Fishing" type="Node2D" node_paths=PackedStringArray("state_machine", "canvas_layer", "state_label", "bobber", "exit_button")]
 script = ExtResource("1_pkqmd")
 state_machine = NodePath("StateMachine")
 canvas_layer = NodePath("CanvasLayer")
-state_label = NodePath("Label")
+state_label = NodePath("CanvasLayer/Label")
 bobber = NodePath("Sprite2D")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+exit_button = NodePath("CanvasLayer/Button")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "scene")]
 script = ExtResource("2_7voic")
@@ -48,3 +45,17 @@ vframes = 4
 frame = 15
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -87.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Exit Game
+"
