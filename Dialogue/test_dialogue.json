@@ -1,0 +1,60 @@
+{
+	"dialogue_id": "test_dialogue",
+	"nodes":
+		{"start": {
+			"speaker": "Ella",
+			"text": "So, Keldor, heard any rumors worth chasing lately?",
+			"choices": ["rumors", "skeptical"]
+		},
+		"rumors": {
+			"speaker": "Keldor",
+			"text": "A few. They say there's a haunted crypt north of here. Brave enough for ghosts?",
+			"choices": ["brave", "doubt"]
+		},
+		"skeptical": {
+			"speaker": "Keldor",
+			"text": "Rumors are just stories until you see the truth for yourself.",
+			"choices": ["rumors"]
+		},
+		"brave": {
+			"speaker": "Ella",
+			"text": "Ghosts don't scare me. Just means more treasure for the taking.",
+			"choices": ["caution"]
+		},
+		"doubt": {
+			"speaker": "Ella",
+			"text": "Sounds like a fairy tale. A good way to get lost in the woods chasing shadows.",
+			"choices": ["caution"]
+		},
+		"caution": {
+			"speaker": "Keldor",
+			"text": "Caution never killed anyone. But a reckless thief in a haunted crypt? That's another story.",
+			"choices": ["plan", "joke"]
+		},
+		"joke": {
+			"speaker": "Ella",
+			"text": "Good thing I'm not reckless. I'm 'boldly strategic.'",
+			"choices": ["plan"]
+		},
+		"plan": {
+			"speaker": "Keldor",
+			"text": "Alright then, if we're doing this, we need a plan. We go at dawn.",
+			"choices": ["agree", "hesitate"]
+		},
+		"agree": {
+			"speaker": "Ella",
+			"text": "Dawn it is. I'll bring the torches, you bring the sword.",
+			"choices": ["end"]
+		},
+		"hesitate": {
+			"speaker": "Ella",
+			"text": "Maybe we should ask around first. See if anyone else has gone there and made it back.",
+			"choices": ["agree"]
+		},
+		"end": {
+			"speaker": "Narrator",
+			"text": "With the plan set, the two adventurers finish their drinks and prepare for the journey ahead.",
+			"choices": []
+		}
+	}
+}
