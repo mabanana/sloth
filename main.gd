@@ -20,16 +20,22 @@ enum Scene {
 func _ready():
 	init_dialogue_controller()
 	main_menu = %Control
-	%StartCombat.pressed.connect(start_combat)
+	%StartCombat.pressed.connect(func():
+		start_combat()
+		%AutoCombat.release_focus()
+	)
 	%AutoCombat.pressed.connect(func():
 		%AutoCheck.button_pressed = true
 		start_combat()
+		%AutoCombat.release_focus()
 	)
 	%StartFishing.pressed.connect(func():
 		start_scene(Scene.FISHING)
+		%StartFishing.release_focus()
 	)
 	%StartDialogue.pressed.connect(func():
 		dialog_controller.start("res://Dialogue/test_dialogue.json")
+		%StartDialogue.release_focus()
 	)
 	
 	
