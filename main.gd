@@ -2,6 +2,8 @@ extends Node2D
 class_name Main
 
 var input_handler: InputHandler = InputHandler.new()
+var json_parser: JsonParser = JsonParser.new()
+var dialog_controller: DialogueController
 var current_scene: Node2D
 var main_menu: Control
 var wins = 0
@@ -16,6 +18,7 @@ enum Scene {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	init_dialogue_controller()
 	main_menu = %Control
 	%StartCombat.pressed.connect(start_combat)
 	%AutoCombat.pressed.connect(func():
@@ -25,6 +28,10 @@ func _ready():
 	%StartFishing.pressed.connect(func():
 		start_scene(Scene.FISHING)
 	)
+	%StartDialogue.pressed.connect(func():
+		dialog_controller.start("res://Dialogue/test_dialogue.json")
+	)
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -58,3 +65,10 @@ func start_scene(scene: Scene):
 	add_child(current_scene)
 	if %AutoCheck.button_pressed and scene == Scene.COMBAT:
 		current_scene.auto_toggle.button_pressed = true
+
+func init_dialogue_controller():
+	if not dialog_controller:
+		dialog_controller = load("res://Dialogue/dialogue_controller.tscn").instantiate()
+		dialog_controller.main = self
+		dialog_controller.hide()
+		canvas_layer.add_child(dialog_controller)
