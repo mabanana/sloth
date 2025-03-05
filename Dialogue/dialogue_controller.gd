@@ -19,6 +19,7 @@ var text_cd: int = 0
 @export var speaker_label: Label
 @export var end_label: Label
 @export var text_speed_slider: HSlider
+@export var thumbnail_vbox: VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,6 +52,7 @@ func start(json_path):
 
 func _update():
 	speaker_label.text = current_node.speaker
+	thumbnail_vbox.visible = len(current_node.speaker) > 0
 
 func next_node(index = 0):
 	if current_node:

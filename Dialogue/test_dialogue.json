@@ -52,7 +52,7 @@
 			"choices": ["agree"]
 		},
 		"end": {
-			"speaker": "Narrator",
+			"speaker": "",
 			"text": "With the plan set, the two adventurers finish their drinks and prepare for the journey ahead.",
 			"choices": []
 		}
