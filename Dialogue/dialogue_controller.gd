@@ -6,7 +6,6 @@ var main: Main
 
 var dialogue_tree: Dictionary
 var current_node: Dictionary
-var json_parser: JsonParser
 var input_handler: InputHandler
 var json_path: String
 var text_index: int
@@ -24,7 +23,6 @@ var text_cd: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	text_index = 0
-	json_parser = main.json_parser
 	input_handler = main.input_handler
 	_init_text_speed_slider()
 
@@ -45,7 +43,7 @@ func _gui_input(event):
 
 func start(json_path):
 	show()
-	dialogue_tree = json_parser.load_json(json_path)
+	dialogue_tree = JsonParser.load_json(json_path)
 	if dialogue_tree and dialogue_tree.nodes["start"]:
 		current_node = dialogue_tree.nodes["start"]
 	_update()
