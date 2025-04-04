@@ -56,14 +56,23 @@ func _process(delta):
 func _gui_input(event):
 	var result: Dictionary = input_handler.handle_input(event)
 	if result:
-		if result.context == InputHandler.Context.key_pressed and result.action in [InputHandler.PlayerActions.SELECT_SlOT_1,
-		InputHandler.PlayerActions.SELECT_SlOT_2,
-		InputHandler.PlayerActions.SELECT_SlOT_3,
-		InputHandler.PlayerActions.SELECT_SlOT_4]:
-			var selection = result.action - InputHandler.PlayerActions.SELECT_SlOT_1
-			print(selection)
-			
-		elif result.context == InputHandler.Context.key_pressed or result.context == InputHandler.Context.mouse_pressed:
+		if result.context == InputHandler.Context.mouse_pressed:
+			if current_node and text_index <= len(current.text) - 1:
+				text_label.text = current.text
+				text_index = len(current.text) - 1
+			else:
+				advance()
+func _input(event):
+	var result: Dictionary = input_handler.handle_input(event)
+	if result:
+		if (current_node and len(current_node.choices) > 1 and current_line >= len(current_node.dialogue) - 1):
+			if result.context == InputHandler.Context.key_pressed and result.action in [InputHandler.PlayerActions.SELECT_SlOT_1,
+			InputHandler.PlayerActions.SELECT_SlOT_2,
+			InputHandler.PlayerActions.SELECT_SlOT_3,
+			InputHandler.PlayerActions.SELECT_SlOT_4]:
+				var selection = result.action - InputHandler.PlayerActions.SELECT_SlOT_1
+				next_node(selection)
+		elif result.context == InputHandler.Context.key_pressed:
 			if current_node and text_index <= len(current.text) - 1:
 				text_label.text = current.text
 				text_index = len(current.text) - 1
