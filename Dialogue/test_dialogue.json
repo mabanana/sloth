@@ -1,60 +1,94 @@
 {
-	"dialogue_id": "test_dialogue",
-	"nodes":
-		{"start": {
-			"speaker": "Ella",
-			"text": "So, Keldor, heard any rumors worth chasing lately?",
-			"choices": ["rumors", "skeptical"]
+  "dialogue_id": "boss_reaper_room_start",
+  "nodes": {
+	"start": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Boss Reaper",
+		  "text": "I see you have arrived in one piece. Good."
 		},
-		"rumors": {
-			"speaker": "Keldor",
-			"text": "A few. They say there's a haunted crypt north of here. Brave enough for ghosts?",
-			"choices": ["brave", "doubt"]
+		"1": {
+		  "speaker": "Reaper",
+		  "text": "I literally walked 2 steps. it wasnt a very difficult path."
 		},
-		"skeptical": {
-			"speaker": "Keldor",
-			"text": "Rumors are just stories until you see the truth for yourself.",
-			"choices": ["rumors"]
+		"2": {
+		  "speaker": "Boss Reaper",
+		  "text": "These Forests are full of vile creatures, I need you to kill them, and bring me their souls."
 		},
-		"brave": {
-			"speaker": "Ella",
-			"text": "Ghosts don't scare me. Just means more treasure for the taking.",
-			"choices": ["caution"]
+		"3": {
+		  "speaker": "Reaper",
+		  "text": "Vile creatures? You mean like frogs?"
 		},
-		"doubt": {
-			"speaker": "Ella",
-			"text": "Sounds like a fairy tale. A good way to get lost in the woods chasing shadows.",
-			"choices": ["caution"]
+		"4": {
+		  "speaker": "Boss Reaper",
+		  "text": "You're quick to catch on, I like that..."
 		},
-		"caution": {
-			"speaker": "Keldor",
-			"text": "Caution never killed anyone. But a reckless thief in a haunted crypt? That's another story.",
-			"choices": ["plan", "joke"]
-		},
-		"joke": {
-			"speaker": "Ella",
-			"text": "Good thing I'm not reckless. I'm 'boldly strategic.'",
-			"choices": ["plan"]
-		},
-		"plan": {
-			"speaker": "Keldor",
-			"text": "Alright then, if we're doing this, we need a plan. We go at dawn.",
-			"choices": ["agree", "hesitate"]
-		},
-		"agree": {
-			"speaker": "Ella",
-			"text": "Dawn it is. I'll bring the torches, you bring the sword.",
-			"choices": ["end"]
-		},
-		"hesitate": {
-			"speaker": "Ella",
-			"text": "Maybe we should ask around first. See if anyone else has gone there and made it back.",
-			"choices": ["agree"]
-		},
-		"end": {
-			"speaker": "",
-			"text": "With the plan set, the two adventurers finish their drinks and prepare for the journey ahead.",
-			"choices": []
+		"5": {
+		  "speaker": "Reaper",
+		  "text": "wait YOU WANT ME TO KILL FROGS? Do frogs even have souls? Gingers will never recover from learning that even frogs have souls."
 		}
+	  },
+	  "choices": ["is_this_a_joke"]
+	},
+
+	"is_this_a_joke": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Boss Reaper",
+		  "text": "Do you think this is a joke? I hope you're not too fond of your own soul, since I might just take it from you if you dont stop joking around."
+		}
+	  },
+	  "choices": ["apologize", "joke"]
+	},
+
+	"apologize": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Reaper",
+		  "text": "OF COURSE NOT SIR, YES SIR!"
+		},
+		"1": {
+		  "speaker": "Boss Reaper",
+		  "text": "That's what I thought"
+		}
+	  },
+	  "choices": ["end"]
+	},
+
+	"joke": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Reaper",
+		  "text": "But they're so cuuute~"
+		},
+		"1": {
+		  "speaker": "Boss Reaper",
+		  "text": "Im going to pretend you never said that. Ahem."
+		}
+	  },
+	  "choices": ["end"]
+	},
+
+	"end": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Boss Reaper",
+		  "text": "These Forests are full of vile creatures, I need you to kill them, and bring me their souls."
+		},
+		"1": {
+		  "speaker": "Reaper",
+		  "text": "Well, they're cute, but I bet they'll be even cuter when they're dead and mutilated."
+		},
+		"2": {
+		  "speaker": "Boss Reaper",
+		  "text": "W T F. ok anyways-"
+		},
+		"3": {
+		  "speaker": "Boss Reaper",
+		  "text": "It seems like we're on the same page then, come back after killing 1000 frogs."
+		}
+	  },
+	  "choices": []
 	}
+  }
 }
