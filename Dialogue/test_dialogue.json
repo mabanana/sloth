@@ -38,10 +38,10 @@
 		  "text": "Do you think this is a joke? I hope you're not too fond of your own soul, since I might just take it from you if you dont stop joking around."
 		}
 	  },
-	  "choices": ["apologize", "joke"]
+	  "choices": ["apologize_for_your_transgressions", "lighten_the_mood"]
 	},
 
-	"apologize": {
+	"apologize_for_your_transgressions": {
 	  "dialogue": {
 		"0": {
 		  "speaker": "Reaper",
@@ -55,7 +55,7 @@
 	  "choices": ["end"]
 	},
 
-	"joke": {
+	"lighten_the_mood": {
 	  "dialogue": {
 		"0": {
 		  "speaker": "Reaper",
@@ -72,18 +72,14 @@
 	"end": {
 	  "dialogue": {
 		"0": {
-		  "speaker": "Boss Reaper",
-		  "text": "These Forests are full of vile creatures, I need you to kill them, and bring me their souls."
-		},
-		"1": {
 		  "speaker": "Reaper",
 		  "text": "Well, they're cute, but I bet they'll be even cuter when they're dead and mutilated."
 		},
-		"2": {
+		"1": {
 		  "speaker": "Boss Reaper",
 		  "text": "W T F. ok anyways-"
 		},
-		"3": {
+		"2": {
 		  "speaker": "Boss Reaper",
 		  "text": "It seems like we're on the same page then, come back after killing 1000 frogs."
 		}

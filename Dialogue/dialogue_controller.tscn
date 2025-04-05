@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://25vqs1jxcsi7"]
+[gd_scene load_steps=11 format=3 uid="uid://25vqs1jxcsi7"]
 
 [ext_resource type="Script" path="res://Dialogue/dialogue_controller.gd" id="1_kbxpl"]
 [ext_resource type="Texture2D" uid="uid://bior5jjjcgljf" path="res://Fishing/Assets/global.png" id="2_cltnh"]
@@ -10,6 +10,9 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kvfc"]
 bg_color = Color(0.6, 0.6, 0.6, 0.435294)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twebn"]
+bg_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qf57u"]
 atlas = ExtResource("2_cltnh")
@@ -24,11 +27,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kbxpl")
 text_label = NodePath("MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/ScrollContainer/TextLabel")
-speaker_label = NodePath("MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/ThumbnailVbox/PanelContainer/SpeakerLabel")
+speaker_label = NodePath("MainContainer/SpeakerLabelContainer/MarginContainer/SpeakerLabel")
 end_label = NodePath("MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/EndLabel")
 text_speed_slider = NodePath("SettingsContatiner/TextSpeedSlider")
 thumbnail_vbox = NodePath("MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/ThumbnailVbox")
-choices_vbox = NodePath("MainContainer/ChoicesContainer/MarginContainer/ChoicesVBox")
+choices_vbox = NodePath("MainContainer/ChoicesContainer/PanelContainer/MarginContainer/ChoicesVBox")
 choices_container = NodePath("MainContainer/ChoicesContainer")
 dialogue_container = NodePath("MainContainer/DialogueContainer")
 state_machine = NodePath("StateMachine")
@@ -71,32 +74,56 @@ offset_top = -55.0
 offset_right = 290.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 20
+theme_override_constants/separation = 0
 
-[node name="ChoicesContainer" type="PanelContainer" parent="MainContainer"]
+[node name="ChoicesContainer" type="MarginContainer" parent="MainContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="MainContainer/ChoicesContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_3kvfc")
 
-[node name="MarginContainer" type="MarginContainer" parent="MainContainer/ChoicesContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/ChoicesContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ChoicesVBox" type="VBoxContainer" parent="MainContainer/ChoicesContainer/MarginContainer"]
+[node name="ChoicesVBox" type="VBoxContainer" parent="MainContainer/ChoicesContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Button" type="Button" parent="MainContainer/ChoicesContainer/MarginContainer/ChoicesVBox"]
+[node name="Button" type="Button" parent="MainContainer/ChoicesContainer/PanelContainer/MarginContainer/ChoicesVBox"]
 layout_mode = 2
 text = "Choice 1"
 
-[node name="Button2" type="Button" parent="MainContainer/ChoicesContainer/MarginContainer/ChoicesVBox"]
+[node name="Button2" type="Button" parent="MainContainer/ChoicesContainer/PanelContainer/MarginContainer/ChoicesVBox"]
 layout_mode = 2
 text = "Choice 1"
+
+[node name="SpeakerLabelContainer" type="PanelContainer" parent="MainContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_twebn")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/SpeakerLabelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SpeakerLabel" type="Label" parent="MainContainer/SpeakerLabelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Name"
+vertical_alignment = 1
 
 [node name="DialogueContainer" type="PanelContainer" parent="MainContainer"]
 custom_minimum_size = Vector2(0, 150)
@@ -129,12 +156,6 @@ size_flags_horizontal = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/ThumbnailVbox"]
 layout_mode = 2
-
-[node name="SpeakerLabel" type="Label" parent="MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/ThumbnailVbox/PanelContainer"]
-layout_mode = 2
-text = "Name"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Thumbnail" type="TextureRect" parent="MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/ThumbnailVbox"]
 layout_mode = 2

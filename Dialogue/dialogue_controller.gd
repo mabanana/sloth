@@ -23,7 +23,7 @@ var text_cd: int = 0
 @export var text_speed_slider: HSlider
 @export var thumbnail_vbox: VBoxContainer
 @export var choices_vbox: VBoxContainer
-@export var choices_container: PanelContainer
+@export var choices_container: MarginContainer
 @export var dialogue_container: PanelContainer
 @export var state_machine: StateMachine
 
@@ -146,7 +146,10 @@ func _update_choices():
 		choices_container.show()
 		for i in range(len(current_node.choices)):
 			var button = Button.new()
-			button.text = current_node.choices[i]
+			button.text = str(i+1) + ". "
+			button.text += current_node.choices[i].capitalize()
+			button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+			button.flat = true
 			choices_vbox.add_child(button)
 			button.pressed.connect(next_node.bind(i))
 	else:
