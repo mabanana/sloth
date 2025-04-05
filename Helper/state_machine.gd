@@ -2,7 +2,7 @@ extends Node
 class_name StateMachine
 
 @export var current_state : State
-@export var scene: Node2D
+@export var scene: Node
 var states : Dictionary = {}
 
 func _ready():

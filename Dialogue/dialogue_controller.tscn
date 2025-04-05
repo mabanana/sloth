@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://25vqs1jxcsi7"]
+[gd_scene load_steps=10 format=3 uid="uid://25vqs1jxcsi7"]
 
 [ext_resource type="Script" path="res://Dialogue/dialogue_controller.gd" id="1_kbxpl"]
 [ext_resource type="Texture2D" uid="uid://bior5jjjcgljf" path="res://Fishing/Assets/global.png" id="2_cltnh"]
+[ext_resource type="Script" path="res://Helper/state_machine.gd" id="2_nmbuh"]
+[ext_resource type="Script" path="res://Dialogue/States/typing_state.gd" id="3_vipdb"]
+[ext_resource type="Script" path="res://Dialogue/States/choice_state.gd" id="4_0kmmw"]
+[ext_resource type="Script" path="res://Dialogue/States/Idle_state.gd" id="5_e6pbt"]
+[ext_resource type="Script" path="res://Dialogue/States/game_actions_state.gd" id="6_uogdq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kvfc"]
 bg_color = Color(0.6, 0.6, 0.6, 0.435294)
@@ -10,7 +15,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0.435294)
 atlas = ExtResource("2_cltnh")
 region = Rect2(0, 0, 16, 16)
 
-[node name="DialogueController" type="Control" node_paths=PackedStringArray("text_label", "speaker_label", "end_label", "text_speed_slider", "thumbnail_vbox", "choices_vbox", "choices_container", "dialogue_container")]
+[node name="DialogueController" type="Control" node_paths=PackedStringArray("text_label", "speaker_label", "end_label", "text_speed_slider", "thumbnail_vbox", "choices_vbox", "choices_container", "dialogue_container", "state_machine")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +31,24 @@ thumbnail_vbox = NodePath("MainContainer/DialogueContainer/MarginContainer/VBoxC
 choices_vbox = NodePath("MainContainer/ChoicesContainer/MarginContainer/ChoicesVBox")
 choices_container = NodePath("MainContainer/ChoicesContainer")
 dialogue_container = NodePath("MainContainer/DialogueContainer")
+state_machine = NodePath("StateMachine")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "scene")]
+script = ExtResource("2_nmbuh")
+current_state = NodePath("Typing")
+scene = NodePath("..")
+
+[node name="Typing" type="Node" parent="StateMachine"]
+script = ExtResource("3_vipdb")
+
+[node name="Choice" type="Node" parent="StateMachine"]
+script = ExtResource("4_0kmmw")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_e6pbt")
+
+[node name="GameActions" type="Node" parent="StateMachine"]
+script = ExtResource("6_uogdq")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

@@ -25,6 +25,7 @@ var text_cd: int = 0
 @export var choices_vbox: VBoxContainer
 @export var choices_container: PanelContainer
 @export var dialogue_container: PanelContainer
+@export var state_machine: StateMachine
 
 signal choice_selected
 signal dialogue_ended
@@ -37,7 +38,6 @@ func _ready():
 	input_handler = main.input_handler
 	clear_children(choices_vbox)
 	connect_signals()
-	#_init_text_speed_slider()
 
 func connect_signals():
 	dialogue_started.connect(_init_text_speed_slider)
