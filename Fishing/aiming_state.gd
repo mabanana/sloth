@@ -29,4 +29,5 @@ func on_enter():
 
 func on_exit():
 	scene.cast_power = cast_power
+	scene.cast_pos = get_viewport().get_mouse_position()
 	print("casted rod at %s power" % [cast_power])
