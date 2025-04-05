@@ -1,5 +1,8 @@
 extends State
 class_name DialogueIdleState
+# Inactive state that takes no input and hides dialogue GUI
+# exits into typing state
+
 
 var scene: DialogueController
 
