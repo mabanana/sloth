@@ -14,6 +14,7 @@ var losses = 0
 enum Scene {
 	COMBAT,
 	FISHING,
+	MAP,
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -37,7 +38,10 @@ func _ready():
 		dialog_controller.start("res://Dialogue/test_dialogue.json")
 		%StartDialogue.release_focus()
 	)
-	
+	%OpenMap.pressed.connect(func():
+		start_scene(Scene.MAP)
+		%OpenMap.release_focus()
+	)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -67,6 +71,8 @@ func start_scene(scene: Scene):
 			resource = load("res://Combat/scene.tscn")
 		Scene.FISHING:
 			resource = load("res://Fishing/scene.tscn")
+		Scene.MAP:
+			resource = load("res://GridRPG/scene.tscn")
 	current_scene = resource.instantiate()
 	add_child(current_scene)
 	if %AutoCheck.button_pressed and scene == Scene.COMBAT:

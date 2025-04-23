@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci0bapw1e4dhx"]
+
+[ext_resource type="Script" path="res://GridRPG/grid_map_controller.gd" id="1_ipxim"]
+
+[node name="Scene" type="Node2D"]
+script = ExtResource("1_ipxim")
