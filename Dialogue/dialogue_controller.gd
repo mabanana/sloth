@@ -63,6 +63,8 @@ func _gui_input(event):
 			else:
 				advance()
 func _input(event):
+	if not dialogue_tree:
+		return
 	var result: Dictionary = input_handler.handle_input(event)
 	if result:
 		if (current_node and len(current_node.choices) > 1 and current_line >= len(current_node.dialogue) - 1):
